@@ -3,6 +3,7 @@ var filter = 0;
 var profiles = [];
 var profilesStore = 0;
 //DATABASE VARIABLES END
+//Project By IFTEKAR_EMON
 //AUTHANTICATION VARIABLES START
 var entry = 0;
 var toggle = 0;
@@ -14,6 +15,7 @@ var username = 0;
 var shouldAllow = 0;
 var notInRecords = 0;
 //AUTHANTICATION VARIABLES END
+//Project By IFTEKAR_EMON
 //CREATING & UPDATING DB START
 var db = new SQL.Database();//settting pointer 
 db.run("CREATE TABLE profiles (id INTEGER PRIMARY KEY AUTOINCREMENT, unit TEXT);");//creating table in DB
@@ -67,6 +69,7 @@ document.addEventListener("submit", function(e){//this code calls all the functi
     }                                        
 });
 //CREATING & UPDATING DB END
+//Project By IFTEKAR_EMON
 //PASSWORD FILTER START
 function PasswordAuthanticate(){//filtering password
     if(filter.length == 0){//checking to see if user entred a password                                                              
@@ -78,15 +81,16 @@ function PasswordAuthanticate(){//filtering password
                 entry = 1;
                 toggle = 1;
                 meshold0 = "Your account is now registred";
-                display();
+                display();//displaying the message above 
             }else{ 
                 document.getElementById("account-form").reset();
                 meshold0 = "Password is not Strong, try again.";
-                display();
+                display();//displaying the message above 
             }
         }   
 };
 //PASSWORD FILTER END
+//Project By IFTEKAR_EMON
 //USERNAME FILTER START
 function UsernameAuthanticate(){//filtering username
     //Extract data from DB
@@ -99,7 +103,7 @@ function UsernameAuthanticate(){//filtering username
     //Extract data from DB
         if(filter.length == 0){//checking if user entred a password
             meshold0 = "Please enter a Username";
-            display();
+            display();//displaying the message above 
         }else{
             arrayLength = profiles.length;
             var i = 0;
@@ -107,7 +111,7 @@ function UsernameAuthanticate(){//filtering username
             do{//looping through the DB array
                 if(filter == profiles[i]){//checking for repeating userrnames 
                     meshold0 = "An account by the Username " + filter + " already exists.";
-                    display();
+                    display();//displaying the message above 
                     document.getElementById("account-form").reset();
                     allowEntry = 1;//allows for new data entry 
                     i = i + 2;
@@ -121,25 +125,26 @@ function UsernameAuthanticate(){//filtering username
         }
 };
 //USERNAME FILTER END 
-//THIS IS FOR TESTING PURPOSES START
-function call(){
-    //EXTRACTING DATA START (put into profiles array)  
-    var results = db.exec("SELECT unit FROM profiles");
-    for(var i = profiles.length; i < results[0].values.length; i++){
-        profiles.push(results[0].values[i]);
-    }
-    console.log("This is the call function: " + profiles);
-    //EXTRACTING DATA END (put into profiles array)
-    //ConsoleLog Profiles array to see data, every even is a username and every odd is a password
-};
+//Project By IFTEKAR_EMON
+////THIS IS FOR TESTING PURPOSES START
+                                //function call(){
+                                //    //EXTRACTING DATA START (put into profiles array)  
+                                //    var results = db.exec("SELECT unit FROM profiles");
+                                //    for(var i = profiles.length; i < results[0].values.length; i++){
+                                //        profiles.push(results[0].values[i]);
+                                //    }
+                                //    console.log("This is the call function: " + profiles);
+                                //    //EXTRACTING DATA END (put into profiles array)
+                                //    //ConsoleLog Profiles array to see data, every even is a username and every odd is a password
+                                //};
 //THIS IS FOR TESTING PURPOSES END
 //USERNAME LOGIN START
-function UserMatch(inputtxt){
+function UserMatch(inputtxt){//this is going to match the input "inputtxt" with DB 
     if(inputtxt.value.length == 0){//checks to see if input is blank
         meshold0 = "Please enter a Username";//checking to see if input box is empty 
-        display();
+        display();//displaying the message above 
     }else{
-        filter = inputtxt.value;
+        filter = inputtxt.value;//setting input to external variable
             //Extract data from DB
                 var results = db.exec("SELECT unit FROM profiles");//extracting the data from the DB
                 for(var i = profiles.length; i < results[0].values.length; i++){//finding the latest addition to the DB
@@ -165,15 +170,16 @@ function UserMatch(inputtxt){
     }
 }
 //USERNAME LOGIN END
+//Project By IFTEKAR_EMON
 //PASSWORD LOGIN START
 function PassMatch(inputtxt){
     if(inputtxt.value.length == 0){//checks to see if input is blank
         meshold0 = "Please enter a Password";
-        display();
+        display();//displaying the message above 
     }else{
         if(notInRecords == 0){
             meshold0 = "There is no account by the Username " + filter;
-            display();
+            display();//displaying the message above 
         }else{
             filter = inputtxt.value;
             //Extract data from DB
@@ -185,15 +191,16 @@ function PassMatch(inputtxt){
             //Extract data from DB
             if(profiles[count] == filter){
                 meshold0 = "You are now logged into " + username;
-                display();
+                display();//displaying the message above 
             }else{
                 meshold0 = "Incorrect Username or Password, Try again ";
-                display();
+                display();//displaying the message above 
             }
         }
     }
 }
-//PASSWORD LOGIN
+//PASSWORD LOGIN END
+//Project By IFTEKAR_EMON
 //DISPLAY START
 function display(){//this is what displays the messages on screen 
     idhold0 = 0;
@@ -201,6 +208,7 @@ function display(){//this is what displays the messages on screen
     idhold0.innerHTML = meshold0;
 }
 //DISPLAY END
+//Project By IFTEKAR_EMON
 //DB RESET SOLUTION START
 function ReEntry(){
      //Extract data from DB
@@ -212,27 +220,30 @@ function ReEntry(){
         var duration = profiles.length;
         var zz = profiles.length - 1;
         do{
-            profilesStore = profiles[zz];
+            profilesStore = profiles[zz];//adding data from localstorage to DB
 
-            var i = JSON.parse(localStorage.getItem("Database")) || [];
-            i.push(profilesStore); 
-            localStorage.setItem("Database", JSON.stringify(i));
-            zz++;
-        }while(zz < duration)
-        var display = JSON.parse(localStorage.getItem("Database")) || [];
-        console.log(display);
+            var i = JSON.parse(localStorage.getItem("Database")) || [];//data retrivle 
+            i.push(profilesStore);                                 //
+            localStorage.setItem("Database", JSON.stringify(i));   //adding data
+            zz++;//looping through the session storage 
+        }while(zz < duration)//loop break condition
+//FOR DEBUGGING PURPOSES
+                        //var display = JSON.parse(localStorage.getItem("Database")) || [];     //
+                        //console.log(display);                                                 //will show account info on console 
+//FOR DEBUGGING PURPOSES                                         
 }
-function ReReEntry(){
-    if(shouldAllow == 0){
-    var display = JSON.parse(localStorage.getItem("Database")) || [];
-    var duration = display.length;
-    var zz = 0;
+function ReReEntry(){//reentering data to the DB because of page refresh
+    if(shouldAllow == 0){//allowing entry
+    var display = JSON.parse(localStorage.getItem("Database")) || [];//data retrival
+    var duration = display.length;//loop condition set
+    var zz = 0;//looper set
     do{
-        profilesStore = display[zz];
-        db.run("INSERT INTO profiles (unit) VALUES (?)", profilesStore);
-        zz++;
-    }while(zz < duration)
-    shouldAllow = 1;
+        profilesStore = display[zz];//pushing data
+        db.run("INSERT INTO profiles (unit) VALUES (?)", profilesStore);//adding data to db
+        zz++;//looping through the db
+    }while(zz < duration)//loop break condition
+    shouldAllow = 1;//denying entry
 }
 }
 //DB RESET SOLUTION END
+//Project By IFTEKAR_EMON
