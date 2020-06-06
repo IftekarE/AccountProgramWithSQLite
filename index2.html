@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://cdn.jsdelivr.net/npm/sql.js@0.4.0/js/sql.js'></script>
+    <script src="code.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Setup</title>
+</head>
+<body> 
+    <div>
+    <!--this is for username start-->
+    <ul>
+        <li  class="header">Account Setup</li>
+    </br>
+        <li> <label id="change">Username:</label></li>
+        <li>
+            <form id="account-form" target="self" method="GET">
+                <input type="text" id="user-input"></input>
+                <button id="button" type="submit">Next</button>
+            </form>
+        </li>
+    </br>
+        <li>
+            <a href="index.html"><button id="login" onclick="ReReEntry();">Sign In</button></a>
+        </li>
+    </ul>
+     <!--this is for username end-->
+    <span id="can0"></span>
+    </div>
+</body>
+</html>

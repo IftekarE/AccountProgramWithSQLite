@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src='https://cdn.jsdelivr.net/npm/sql.js@0.4.0/js/sql.js'></script>
+    <title>Account Username Password Validation</title>
+    <script src="code.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+    <!--this is for username checking start-->
+    <ul>
+            <li class="header">Please Sign In</li>
+        </br>
+            <li>Username</li>
+            <li>
+                    <form name="form3" action="#"><!--this creates an input box-->
+                        <input type='text' name='text3' id= "nameuser"/><!--this assigns the input a type and name-->
+                    </form>
+            </li>
+        <!--this is for username checking end-->
+        </br>
+        <!--this is for the password checking start-->
+            <li>Password</li>
+            <li>
+                    <form name="form4" action="#"><!--this creates an input box-->
+                        <input type='text' name='text4' id= "wordpass"><!--this assigns the input a type and name-->
+                    </form>
+            </li>
+        </br>
+            <li>
+                <input id="login" type="button" name="Enter" value="Login" onclick="ReReEntry(); UserMatch(document.form3.text3); PassMatch(document.form4.text4);"/><!--this is like the button that is used to get the result-->
+                <!--    <button id="login" onclick="username(document.form1.text1); varify(document.form2.text2);">Login</button>   --><!--this is like the button that is used to get the result-->
+            </li>
+        </br>
+            <li>
+                <a href= "index2.html"><button id="account">Create Account</button></a>
+            </li>
+        </ul>
+        <!--this is for the password checking end-->
+        <span id="can0"></span>
+    </div>
+    <button onclick="call();">test case</button>
+    </body>
+</html>

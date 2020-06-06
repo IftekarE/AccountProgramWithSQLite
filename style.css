@@ -1,0 +1,64 @@
+body{
+    background-color: rgb(42,99, 175);
+}
+ul{
+    list-style: none;
+    border-radius: 15px;
+    padding: 0px;
+    margin-left: 87.5px;
+    margin-top: 62.5px;
+    color: seashell;
+}
+.header{
+    font-size: 25px;
+    margin-left:13.75px;
+}
+div{
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    margin-top: -175px;
+    margin-left: -175px;
+    background-color: rgb(35, 81, 155);
+    height: 400px;
+    width: 350px;
+    border-radius: 20px;
+}
+#nameuser, #wordpass, #account-form, #user-input{
+    border-radius: 15px;
+    padding-left: 5px;
+    padding-top: 3.5px;
+}
+*:focus {
+    outline: none;
+}
+#button{
+    border-radius: 15px;
+    height: 25px;
+    width: 120px;
+    margin-left: 25px;
+    margin-top: 16px;
+    font-family:sans-serif;
+    font-size: 15px;
+}
+#account, #login{
+    border-radius: 15px;
+    height: 25px;
+    width: 120px;
+    margin-left: 30px;
+    font-family:sans-serif;
+    font-size: 15px;
+}
+#can0{
+    color: seashell;
+    font-size: 20px;
+    font-family:sans-serif;
+    width: 350px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    margin-left: -215px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align:center;
+}
