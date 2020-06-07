@@ -70,6 +70,21 @@ document.addEventListener("submit", function(e){//this code calls all the functi
 });
 //CREATING & UPDATING DB END
 //Project By IFTEKAR_EMON
+//INITIAL DATA ENTRY START
+var HOLDHOLD = JSON.parse(localStorage.getItem("COOKIE-JAR")) || [];//data retrival
+    if(HOLDHOLD.length == 0){
+        var hold1 = "ADMIN"; 
+        var ZZ = 2;
+        do{
+            db.run("INSERT INTO profiles (unit) VALUES (?)", hold1);
+            var i = JSON.parse(localStorage.getItem("COOKIE-JAR")) || [];//data retrivle 
+            i.push(hold1);                                              //
+            localStorage.setItem("COOKIE-JAR", JSON.stringify(i));   //adding data
+            ZZ = ZZ - 1;
+        }while(ZZ !== 0)
+    }
+//INITIAL DATA ENTRY END
+//Project By IFTEKAR_EMON
 //PASSWORD FILTER START
 function PasswordAuthanticate(){//filtering password
     if(filter.length == 0){//checking to see if user entred a password                                                              
@@ -93,9 +108,11 @@ function PasswordAuthanticate(){//filtering password
 //Project By IFTEKAR_EMON
 //USERNAME FILTER START
 function UsernameAuthanticate(){//filtering username
+    ReReEntry();
     //Extract data from DB
-        if(profiles.length !== 0){
-            var results = db.exec("SELECT unit FROM profiles");//extracting the data from the DB
+    if(profiles.length !== 0 || shouldAllow == 1){
+        var results = db.exec("SELECT unit FROM profiles");//extracting the data from the DB
+        console.log(results[0].values);
             for(var i = profiles.length; i < results[0].values.length; i++){//finding the latest addition to the DB
                 profiles.push(results[0].values[i]);//pushing the latest addition to the DB
             }
@@ -138,6 +155,7 @@ function UsernameAuthanticate(){//filtering username
                                 //    //ConsoleLog Profiles array to see data, every even is a username and every odd is a password
                                 //};
 //THIS IS FOR TESTING PURPOSES END
+//Project By IFTEKAR_EMON
 //USERNAME LOGIN START
 function UserMatch(inputtxt){//this is going to match the input "inputtxt" with DB 
     if(inputtxt.value.length == 0){//checks to see if input is blank
@@ -166,7 +184,6 @@ function UserMatch(inputtxt){//this is going to match the input "inputtxt" with 
                 notInRecords = 0;
             }
         }while(i < arrayLength);//checking loop break condition 
-        console.log(notInRecords);
     }
 }
 //USERNAME LOGIN END
@@ -222,9 +239,9 @@ function ReEntry(){
         do{
             profilesStore = profiles[zz];//adding data from localstorage to DB
 
-            var i = JSON.parse(localStorage.getItem("Database")) || [];//data retrivle 
+            var i = JSON.parse(localStorage.getItem("COOKIE-JAR")) || [];//data retrivle 
             i.push(profilesStore);                                 //
-            localStorage.setItem("Database", JSON.stringify(i));   //adding data
+            localStorage.setItem("COOKIE-JAR", JSON.stringify(i));   //adding data
             zz++;//looping through the session storage 
         }while(zz < duration)//loop break condition
 //FOR DEBUGGING PURPOSES
@@ -234,7 +251,7 @@ function ReEntry(){
 }
 function ReReEntry(){//reentering data to the DB because of page refresh
     if(shouldAllow == 0){//allowing entry
-    var display = JSON.parse(localStorage.getItem("Database")) || [];//data retrival
+    var display = JSON.parse(localStorage.getItem("COOKIE-JAR")) || [];//data retrival
     var duration = display.length;//loop condition set
     var zz = 0;//looper set
     do{
