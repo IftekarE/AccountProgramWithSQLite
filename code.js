@@ -143,19 +143,6 @@ function UsernameAuthanticate(){//filtering username
 };
 //USERNAME FILTER END 
 //Project By IFTEKAR_EMON
-////THIS IS FOR TESTING PURPOSES START
-                                //function call(){
-                                //    //EXTRACTING DATA START (put into profiles array)  
-                                //    var results = db.exec("SELECT unit FROM profiles");
-                                //    for(var i = profiles.length; i < results[0].values.length; i++){
-                                //        profiles.push(results[0].values[i]);
-                                //    }
-                                //    console.log("This is the call function: " + profiles);
-                                //    //EXTRACTING DATA END (put into profiles array)
-                                //    //ConsoleLog Profiles array to see data, every even is a username and every odd is a password
-                                //};
-//THIS IS FOR TESTING PURPOSES END
-//Project By IFTEKAR_EMON
 //USERNAME LOGIN START
 function UserMatch(inputtxt){//this is going to match the input "inputtxt" with DB 
     if(inputtxt.value.length == 0){//checks to see if input is blank
